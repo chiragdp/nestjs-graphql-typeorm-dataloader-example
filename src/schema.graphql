@@ -1,0 +1,109 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  isActive: Boolean!
+}
+
+type SigninUser {
+  id: Int!
+  name: String!
+  email: String!
+  isActive: Boolean!
+  accessToken: String!
+}
+
+type Category {
+  id: Int!
+  name: String!
+  thumbnail: String!
+  category: Category!
+  categoryId: Int!
+  posts: [Post!]!
+}
+
+type Post {
+  id: Int!
+  slug: String!
+  title: String!
+  description: String!
+  content: String!
+  thumbnail: String!
+  user: User!
+  userId: Int!
+  category: Category!
+  categoryId: Int!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
+  posts: [Post!]!
+  post(id: Int!): Post!
+  category(id: Int!): Category!
+}
+
+type Mutation {
+  signup(createUserInput: CreateUserInput!): User!
+  signin(SigninUserInput: SigninUserInput!): SigninUser!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  removeCategory(id: Int!): Category!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+  isActive: Boolean!
+}
+
+input SigninUserInput {
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  password: String
+  isActive: Boolean
+  id: Int!
+}
+
+input CreatePostInput {
+  title: String!
+  description: String!
+  content: String!
+  thumbnail: String!
+  categoryId: Int!
+}
+
+input UpdatePostInput {
+  title: String
+  description: String
+  content: String
+  thumbnail: String
+  categoryId: Int
+  id: Int!
+}
+
+input CreateCategoryInput {
+  name: String!
+  thumbnail: String!
+}
+
+input UpdateCategoryInput {
+  name: String
+  thumbnail: String
+  id: Int!
+}
